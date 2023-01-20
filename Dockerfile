@@ -47,9 +47,6 @@ ENV MAIL_PASSWORD=password
 ENV PRINTER_URL=example.com
 ENV PRINTER_TOKEN=token
 
-RUN sed -i "3i username \"$MAIL_ACCOUNT\"" /root/.fetchmailrc
-RUN sed -i "4i password \"$MAIL_PASSWORD\"" /root/.fetchmailrc
-
 RUN chmod 0700 /root/.fetchmailrc && \
     chmod +x /root/entrypoint.sh && \
     chmod +x /root/scripts/*.sh
