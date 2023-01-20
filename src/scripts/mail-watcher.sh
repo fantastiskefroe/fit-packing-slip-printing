@@ -1,6 +1,6 @@
 #!/bin/sh
 
-path="/root/files/mail"
+path="$HOME/files/mail"
 
 mkdir -p "$path"/done
 

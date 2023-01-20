@@ -1,6 +1,6 @@
 #!/bin/sh
 
-path="/root/files/html"
+path="$HOME/files/html"
 
 mkdir -p "$path"/done
 

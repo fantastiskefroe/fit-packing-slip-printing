@@ -1,11 +1,12 @@
-# wkhtmltopdf dependencies
+# wkhtmltopdf
 FROM ghcr.io/surnet/alpine-wkhtmltopdf:3.17.0-0.12.6-small as wkhtmltopdf
 
+# Our image
 FROM alpine:3.14
 
-COPY --from=wkhtmltopdf /bin/wkhtmltopdf /bin/wkhtmltopdf
 
 # Install dependencies for wkhtmltopdf
+COPY --from=wkhtmltopdf /bin/wkhtmltopdf /bin/wkhtmltopdf
 RUN apk add --no-cache \
     curl \
     wkhtmltopdf \
@@ -39,16 +40,31 @@ RUN apk add --no-cache \
     inotify-tools \
     openssh
 
-WORKDIR /root/
-COPY /src/ /root/
+# Create a user
+ARG USER=default
+ENV HOME /home/$USER
+
+# install sudo as root
+RUN apk add --update sudo
+
+# add new user
+RUN adduser -D $USER \
+        && echo "$USER ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/$USER \
+        && chmod 0440 /etc/sudoers.d/$USER
+
+USER $USER
+WORKDIR $HOME
+COPY /src/ $HOME
 
 ENV MAIL_ACCOUNT=mail@example.com
 ENV MAIL_PASSWORD=password
 ENV PRINTER_URL=example.com
 ENV PRINTER_TOKEN=token
 
-RUN chmod 0700 /root/.fetchmailrc && \
-    chmod +x /root/entrypoint.sh && \
-    chmod +x /root/scripts/*.sh
+RUN sudo chown -R $USER:$USER $HOME
 
-CMD /root/entrypoint.sh
+RUN sudo chmod 0700 $HOME/.fetchmailrc && \
+    sudo chmod +x $HOME/entrypoint.sh && \
+    sudo chmod +x $HOME/scripts/*.sh
+
+CMD $HOME/entrypoint.sh

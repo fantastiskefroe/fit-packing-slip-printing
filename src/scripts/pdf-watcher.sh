@@ -1,10 +1,8 @@
 #!/bin/sh
 
-path="/root/files/pdf"
+path="$HOME/files/pdf"
 
 mkdir -p "$path/done"
-
-echo "$PRINTER_URL"
 
 inotifywait -m "$path" -e moved_to |
   while read -r dir action file; do
