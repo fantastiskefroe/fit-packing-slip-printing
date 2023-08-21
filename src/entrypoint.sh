@@ -7,8 +7,9 @@ sed -i "4i password \"$MAIL_PASSWORD\"" "$HOME"/.fetchmailrc
 
 echo "Starting..."
 
-"$HOME"/scripts/mailfetcher.sh &
+"$HOME"/scripts/mail-fetcher.sh & \
 "$HOME"/scripts/mail-watcher.sh & \
+"$HOME"/scripts/html-uploader.sh & \
 "$HOME"/scripts/html-watcher.sh & \
 "$HOME"/scripts/pdf-watcher.sh
 

@@ -68,3 +68,4 @@ RUN sudo chmod 0700 $HOME/.fetchmailrc && \
     sudo chmod +x $HOME/scripts/*.sh
 
 CMD $HOME/entrypoint.sh
+EXPOSE 8000
