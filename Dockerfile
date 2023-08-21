@@ -37,7 +37,7 @@ RUN apk add --no-cache \
 RUN apk add --no-cache \
     fetchmail \
     python3 \
-    python3-pip \
+    py3-pip \
     inotify-tools \
     openssh
 
