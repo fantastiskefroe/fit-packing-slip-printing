@@ -40,7 +40,7 @@ RUN apk add --no-cache \
     inotify-tools \
     openssh
 
-RUN python3 -m pip install uploadserver
+RUN pip3 install uploadserver
 
 # Create a user
 ARG USER=default
