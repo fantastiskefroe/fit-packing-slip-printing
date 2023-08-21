@@ -2,6 +2,6 @@
 
 path="$HOME/files/html"
 
-mkdir "$path"
+mkdir p "$path"
 
 (cd "$path" && exec python3 -m uploadserver --basic-auth fit-user:"$PRINTER_TOKEN")
