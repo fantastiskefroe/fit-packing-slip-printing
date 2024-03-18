@@ -35,7 +35,6 @@ RUN apk add --no-cache \
 
 # Our own dependencies
 RUN apk add --no-cache \
-    fetchmail \
     python3 \
     py3-pip \
     inotify-tools \
@@ -59,15 +58,12 @@ USER $USER
 WORKDIR $HOME
 COPY /src/ $HOME
 
-ENV MAIL_ACCOUNT=mail@example.com
-ENV MAIL_PASSWORD=password
 ENV PRINTER_URL=example.com
 ENV PRINTER_TOKEN=token
 
 RUN sudo chown -R $USER:$USER $HOME
 
-RUN sudo chmod 0700 $HOME/.fetchmailrc && \
-    sudo chmod +x $HOME/entrypoint.sh && \
+RUN sudo chmod +x $HOME/entrypoint.sh && \
     sudo chmod +x $HOME/scripts/*.sh
 
 CMD $HOME/entrypoint.sh
