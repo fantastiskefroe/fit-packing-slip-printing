@@ -44,7 +44,7 @@ RUN pip3 install uploadserver
 
 # Create a user
 ARG USER=default
-ENV HOME /home/$USER
+ENV HOME=/home/$USER
 
 # install sudo as root
 RUN apk add --update sudo
