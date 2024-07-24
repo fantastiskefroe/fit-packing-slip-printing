@@ -2,7 +2,7 @@
 FROM ghcr.io/surnet/alpine-wkhtmltopdf:3.17.0-0.12.6-small as wkhtmltopdf
 
 # Our image
-FROM alpine:3.20
+FROM alpine:3.14
 
 
 # Install dependencies for wkhtmltopdf
