@@ -1,5 +1,5 @@
 # wkhtmltopdf
-FROM ghcr.io/surnet/alpine-wkhtmltopdf:3.17.0-0.12.6-small as wkhtmltopdf
+FROM ghcr.io/surnet/alpine-wkhtmltopdf:3.20.1-0.12.6-small as wkhtmltopdf
 
 # Our image
 FROM alpine:3.14
